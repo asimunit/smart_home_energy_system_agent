@@ -1,0 +1,273 @@
+{
+  "device_templates": {
+    "hvac_thermostat": {
+      "default_power_rating": 3500,
+      "default_efficiency": 16,
+      "supported_modes": ["auto", "heat", "cool", "off"],
+      "fan_speeds": ["auto", "low", "medium", "high"],
+      "temperature_range": {"min": 50, "max": 95},
+      "default_settings": {
+        "heating_setpoint": 70,
+        "cooling_setpoint": 76,
+        "fan_speed": "auto",
+        "mode": "auto"
+      }
+    },
+
+    "smart_bulb": {
+      "default_power_rating": 60,
+      "brightness_range": {"min": 0, "max": 100},
+      "color_temp_range": {"min": 2200, "max": 6500},
+      "supported_features": ["dimming", "color_temperature", "scheduling"],
+      "default_settings": {
+        "brightness": 80,
+        "color_temperature": 2700,
+        "power_state": "off"
+      }
+    },
+
+    "appliance_dishwasher": {
+      "default_power_rating": 1800,
+      "cycle_types": ["normal", "eco", "quick", "heavy"],
+      "cycle_durations": {
+        "normal": 120,
+        "eco": 180,
+        "quick": 60,
+        "heavy": 150
+      },
+      "delay_start_max": 24,
+      "default_settings": {
+        "cycle_type": "normal",
+        "delay_start": 0,
+        "power_state": "off"
+      }
+    },
+
+    "ev_charger_level2": {
+      "default_power_rating": 7200,
+      "max_current": 30,
+      "connector_types": ["J1772", "Tesla"],
+      "charging_modes": ["standard", "fast", "eco"],
+      "load_balancing": true,
+      "default_settings": {
+        "charging_rate": 7200,
+        "connector_state": "disconnected",
+        "charging_state": "idle"
+      }
+    },
+
+    "solar_panel_array": {
+      "default_power_rating": 8000,
+      "panel_efficiency": 0.20,
+      "degradation_rate": 0.005,
+      "tilt_angle": 30,
+      "azimuth": 180,
+      "temperature_coefficient": -0.004,
+      "monitoring_features": ["generation", "efficiency", "temperature"]
+    },
+
+    "battery_storage": {
+      "default_capacity": 13500,
+      "default_power_rating": 5000,
+      "chemistry": "lithium_ion",
+      "efficiency": 0.90,
+      "depth_of_discharge": 0.95,
+      "cycle_life": 6000,
+      "temperature_range": {"min": 32, "max": 95},
+      "default_settings": {
+        "state_of_charge": 50,
+        "power_flow": 0,
+        "backup_mode": false
+      }
+    }
+  },
+
+  "room_configurations": {
+    "living_room": {
+      "area_sqft": 400,
+      "ceiling_height": 9,
+      "windows": 3,
+      "insulation_rating": "R-30",
+      "typical_occupancy": [
+        {"start": "06:00", "end": "08:00", "weekdays": true},
+        {"start": "18:00", "end": "23:00", "weekdays": true},
+        {"start": "08:00", "end": "23:00", "weekends": true}
+      ],
+      "comfort_priorities": ["temperature", "lighting", "air_quality"]
+    },
+
+    "kitchen": {
+      "area_sqft": 200,
+      "ceiling_height": 9,
+      "windows": 2,
+      "insulation_rating": "R-25",
+      "typical_occupancy": [
+        {"start": "06:30", "end": "08:30", "weekdays": true},
+        {"start": "12:00", "end": "13:00", "weekdays": true},
+        {"start": "17:30", "end": "19:30", "weekdays": true}
+      ],
+      "comfort_priorities": ["lighting", "ventilation", "temperature"]
+    },
+
+    "master_bedroom": {
+      "area_sqft": 300,
+      "ceiling_height": 9,
+      "windows": 2,
+      "insulation_rating": "R-35",
+      "typical_occupancy": [
+        {"start": "22:00", "end": "07:00", "daily": true}
+      ],
+      "comfort_priorities": ["temperature", "air_quality", "lighting"]
+    },
+
+    "garage": {
+      "area_sqft": 500,
+      "ceiling_height": 8,
+      "windows": 1,
+      "insulation_rating": "R-15",
+      "typical_occupancy": [],
+      "comfort_priorities": ["safety", "temperature"]
+    }
+  },
+
+  "agent_configurations": {
+    "energy_monitor": {
+      "update_interval": 30,
+      "anomaly_threshold": 0.3,
+      "pattern_analysis_window": 168,
+      "baseline_update_frequency": "weekly",
+      "efficiency_thresholds": {
+        "excellent": 90,
+        "good": 75,
+        "fair": 60,
+        "poor": 40
+      }
+    },
+
+    "price_intelligence": {
+      "update_interval": 300,
+      "forecast_horizon": 48,
+      "prediction_confidence_threshold": 0.7,
+      "significant_change_threshold": 10,
+      "demand_response_participation": true
+    },
+
+    "hvac": {
+      "update_interval": 60,
+      "temperature_tolerance": 1.0,
+      "setback_temperature": 5.0,
+      "filter_reminder_interval": 2160,
+      "efficiency_monitoring": true
+    },
+
+    "lighting": {
+      "update_interval": 30,
+      "daylight_harvesting": true,
+      "circadian_lighting": true,
+      "motion_sensor_timeout": 15,
+      "brightness_adjustment_step": 10
+    },
+
+    "appliance": {
+      "update_interval": 60,
+      "smart_scheduling": true,
+      "load_balancing": true,
+      "eco_mode_preference": true,
+      "maintenance_monitoring": true
+    },
+
+    "ev_charging": {
+      "update_interval": 30,
+      "smart_charging": true,
+      "load_balancing": true,
+      "solar_integration": true,
+      "departure_buffer": 60
+    },
+
+    "solar_battery": {
+      "update_interval": 15,
+      "generation_forecasting": true,
+      "net_metering": true,
+      "backup_power_reserve": 20,
+      "arbitrage_trading": true
+    },
+
+    "comfort_optimization": {
+      "update_interval": 120,
+      "learning_enabled": true,
+      "occupancy_detection": true,
+      "preference_adaptation": true,
+      "comfort_vs_efficiency_balance": "balanced"
+    },
+
+    "negotiator": {
+      "update_interval": 10,
+      "negotiation_timeout": 60,
+      "max_retries": 3,
+      "conflict_resolution_strategy": "priority_based",
+      "system_health_monitoring": true
+    }
+  },
+
+  "optimization_parameters": {
+    "energy_efficiency": {
+      "target_savings": 0.15,
+      "comfort_impact_threshold": "moderate",
+      "payback_period_months": 12,
+      "peak_shaving_enabled": true
+    },
+
+    "comfort_optimization": {
+      "temperature_adjustment_max": 3.0,
+      "lighting_adjustment_max": 20,
+      "response_time_target": 300,
+      "user_override_learning": true
+    },
+
+    "load_balancing": {
+      "max_simultaneous_high_power": 2,
+      "load_balancing_threshold": 0.8,
+      "priority_device_override": true,
+      "emergency_load_shedding": true
+    },
+
+    "demand_response": {
+      "participation_enabled": true,
+      "minimum_incentive": 0.05,
+      "comfort_impact_limit": "minimal",
+      "opt_out_threshold": "critical_comfort"
+    }
+  },
+
+  "system_limits": {
+    "max_total_power": 10000,
+    "max_hvac_power": 7000,
+    "max_appliance_power": 4000,
+    "max_ev_charging_power": 7200,
+    "emergency_power_reserve": 1000,
+    "battery_backup_duration_hours": 4
+  },
+
+  "integration_settings": {
+    "weather_service": {
+      "update_interval": 900,
+      "forecast_provider": "local_simulation",
+      "solar_radiation_monitoring": true,
+      "severe_weather_alerts": true
+    },
+
+    "utility_integration": {
+      "real_time_pricing": false,
+      "demand_response_enrollment": true,
+      "net_metering_enabled": true,
+      "time_of_use_rates": true
+    },
+
+    "smart_home_platforms": {
+      "home_assistant": false,
+      "smartthings": false,
+      "hubitat": false,
+      "mqtt_broker": true
+    }
+  }
+}

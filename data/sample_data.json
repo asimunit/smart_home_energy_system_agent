@@ -1,0 +1,261 @@
+{
+  "devices": [
+    {
+      "device_id": "hvac_main",
+      "device_type": "hvac",
+      "device_subtype": "thermostat",
+      "name": "Main Floor Thermostat",
+      "room": "living_room",
+      "power_rating": 3500,
+      "efficiency_rating": 16,
+      "zones": ["main"],
+      "capabilities": ["heating", "cooling", "fan", "humidity_control"],
+      "monitoring_enabled": true,
+      "controllable": true
+    },
+    {
+      "device_id": "lights_living_room",
+      "device_type": "lighting",
+      "device_subtype": "smart_bulb",
+      "name": "Living Room Lights",
+      "room": "living_room",
+      "power_rating": 60,
+      "capabilities": ["on_off", "dimming", "color_temperature"],
+      "monitoring_enabled": true,
+      "controllable": true
+    },
+    {
+      "device_id": "dishwasher_main",
+      "device_type": "appliance",
+      "device_subtype": "dishwasher",
+      "name": "Kitchen Dishwasher",
+      "room": "kitchen",
+      "power_rating": 1800,
+      "energy_star_rating": "A+",
+      "capabilities": ["normal_wash", "eco_wash", "quick_wash", "delay_start"],
+      "monitoring_enabled": true,
+      "controllable": true
+    },
+    {
+      "device_id": "ev_charger_garage",
+      "device_type": "ev_charging",
+      "device_subtype": "level2_charger",
+      "name": "Garage EV Charger",
+      "room": "garage",
+      "power_rating": 7200,
+      "max_current": 30,
+      "capabilities": ["level2_charging", "scheduling", "load_balancing"],
+      "monitoring_enabled": true,
+      "controllable": true
+    },
+    {
+      "device_id": "solar_panels",
+      "device_type": "solar_battery",
+      "device_subtype": "solar_panel",
+      "name": "Rooftop Solar Array",
+      "room": "roof",
+      "power_rating": 8000,
+      "panel_count": 24,
+      "capabilities": ["power_generation", "monitoring"],
+      "monitoring_enabled": true,
+      "controllable": false
+    },
+    {
+      "device_id": "battery_storage",
+      "device_type": "solar_battery",
+      "device_subtype": "battery_storage",
+      "name": "Home Battery System",
+      "room": "garage",
+      "power_rating": 5000,
+      "capacity": 13500,
+      "capabilities": ["energy_storage", "backup_power", "load_shifting"],
+      "monitoring_enabled": true,
+      "controllable": true
+    }
+  ],
+
+  "user_preferences": {
+    "user_id": "default_user",
+    "name": "Smart Home User",
+    "temperature": {
+      "heating_setpoint": 70,
+      "cooling_setpoint": 76,
+      "tolerance": 2,
+      "schedule": {
+        "weekday": {
+          "wake": {"time": "06:30", "temp": 72},
+          "leave": {"time": "08:00", "temp": 78},
+          "return": {"time": "18:00", "temp": 74},
+          "sleep": {"time": "22:00", "temp": 68}
+        },
+        "weekend": {
+          "wake": {"time": "08:00", "temp": 72},
+          "sleep": {"time": "23:00", "temp": 68}
+        }
+      }
+    },
+    "lighting": {
+      "brightness_preference": 75,
+      "color_temperature_day": 4000,
+      "color_temperature_evening": 2700,
+      "auto_adjust": true,
+      "circadian_lighting": true
+    },
+    "energy": {
+      "priority": "balanced",
+      "budget_target": 200,
+      "peak_avoidance_enabled": true,
+      "demand_response_participation": true
+    },
+    "ev_charging": {
+      "preferred_soc_limit": 90,
+      "minimum_departure_soc": 80,
+      "smart_charging_enabled": true,
+      "departure_schedule": {
+        "weekday": "08:00",
+        "weekend": "10:00"
+      }
+    }
+  },
+
+  "comfort_zones": {
+    "living_room": {
+      "temperature_range": {"min": 70, "max": 76},
+      "humidity_range": {"min": 40, "max": 60},
+      "lighting_preference": "adaptive",
+      "priority": "high"
+    },
+    "master_bedroom": {
+      "temperature_range": {"min": 68, "max": 74},
+      "humidity_range": {"min": 35, "max": 55},
+      "lighting_preference": "warm",
+      "priority": "high"
+    },
+    "kitchen": {
+      "temperature_range": {"min": 68, "max": 78},
+      "humidity_range": {"min": 30, "max": 70},
+      "lighting_preference": "bright",
+      "priority": "medium"
+    }
+  },
+
+  "energy_pricing_tiers": {
+    "off_peak": {
+      "price_per_kwh": 0.08,
+      "hours": [22, 23, 0, 1, 2, 3, 4, 5]
+    },
+    "standard": {
+      "price_per_kwh": 0.12,
+      "hours": [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 21]
+    },
+    "peak": {
+      "price_per_kwh": 0.18,
+      "hours": [16, 17, 18, 19, 20]
+    }
+  },
+
+  "sample_schedules": {
+    "appliance_schedules": {
+      "dishwasher_main": {
+        "preferred_times": ["23:00", "01:00", "02:00"],
+        "avoid_times": ["16:00-21:00"],
+        "delay_tolerance": 4
+      },
+      "washing_machine": {
+        "preferred_times": ["22:00", "00:00", "02:00"],
+        "avoid_times": ["16:00-21:00"],
+        "delay_tolerance": 6
+      }
+    },
+
+    "lighting_schedules": {
+      "living_room": {
+        "weekday": [
+          {"time": "06:30", "brightness": 40, "color_temp": 3000},
+          {"time": "18:00", "brightness": 80, "color_temp": 2700},
+          {"time": "22:00", "brightness": 30, "color_temp": 2200},
+          {"time": "23:30", "brightness": 0}
+        ]
+      }
+    },
+
+    "hvac_schedules": {
+      "main_zone": {
+        "weekday": {
+          "wake": {"time": "06:00", "temp": 72, "mode": "auto"},
+          "leave": {"time": "08:00", "temp": 78, "mode": "eco"},
+          "return": {"time": "17:30", "temp": 74, "mode": "auto"},
+          "sleep": {"time": "22:00", "temp": 68, "mode": "auto"}
+        }
+      }
+    }
+  },
+
+  "sample_weather_data": {
+    "current": {
+      "temperature": 75,
+      "humidity": 55,
+      "conditions": "partly_cloudy",
+      "wind_speed": 8,
+      "solar_radiation": 600,
+      "timestamp": "2024-07-24T14:30:00Z"
+    },
+    "forecast": [
+      {
+        "date": "2024-07-24",
+        "high": 82,
+        "low": 68,
+        "conditions": "partly_cloudy",
+        "precipitation_chance": 20
+      },
+      {
+        "date": "2024-07-25",
+        "high": 85,
+        "low": 70,
+        "conditions": "sunny",
+        "precipitation_chance": 5
+      }
+    ]
+  },
+
+  "optimization_examples": {
+    "energy_savings_opportunities": [
+      {
+        "device_id": "hvac_main",
+        "opportunity_type": "schedule_optimization",
+        "description": "Adjust temperature setback during unoccupied hours",
+        "potential_savings": "15-20%",
+        "implementation": "Increase cooling setpoint by 3°F when away"
+      },
+      {
+        "device_id": "dishwasher_main",
+        "opportunity_type": "time_shifting",
+        "description": "Run during off-peak hours",
+        "potential_savings": "25-30%",
+        "implementation": "Schedule for 2:00 AM when rates are lowest"
+      },
+      {
+        "device_id": "ev_charger_garage",
+        "opportunity_type": "smart_charging",
+        "description": "Align charging with solar generation",
+        "potential_savings": "40-50%",
+        "implementation": "Charge during peak solar hours when possible"
+      }
+    ],
+
+    "comfort_optimizations": [
+      {
+        "zone": "living_room",
+        "optimization_type": "circadian_lighting",
+        "description": "Automatically adjust color temperature throughout day",
+        "comfort_improvement": "Better sleep quality and alertness"
+      },
+      {
+        "zone": "master_bedroom",
+        "optimization_type": "sleep_temperature",
+        "description": "Gradual temperature reduction for better sleep",
+        "comfort_improvement": "Improved sleep quality"
+      }
+    ]
+  }
+}
